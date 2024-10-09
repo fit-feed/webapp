@@ -1,0 +1,18 @@
+enum Allergen {
+  NONE,
+  DAIRY,
+  EGGS,
+  PEANUTS,
+  TREE_NUTS,
+  SOY,
+  WHEAT,
+  GLUTEN,
+  FISH,
+  SHELLFISH,
+  SESAME,
+  MUSTARD,
+  CELERY,
+  SULFITES,
+  LUPIN,
+  MOLLUSCS
+}

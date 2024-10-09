@@ -1,0 +1,7 @@
+enum Diet {
+  VEGAN,
+  VEGETARIAN,
+  OMNIVORE,
+  GLUTEN_FREE,
+  LACTOSE_FREE
+}
