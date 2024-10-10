@@ -14,7 +14,7 @@ export class AuthService {
     return localStorage.getItem('auth') === 'true';
   }
 
-  public static login(): void {
+  public login(): void {
     localStorage.setItem('auth', 'true');
     UserService.setCurrent({email:'e@mail.com', password:'123456'})
   }
