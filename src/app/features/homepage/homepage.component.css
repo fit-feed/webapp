@@ -1,0 +1,11 @@
+section {
+  min-height: 70vh;
+}
+
+.profiles {
+  min-width: 20vh;
+}
+
+form {
+  max-height: 50vh;
+}

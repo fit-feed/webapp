@@ -1,30 +1,35 @@
-export interface Profile {
-  id: number;
-  name: string;
-  age: number;
-  gender: Gender;
-  weight: number;
-  height: number;
-  diet: Diet;
-  goal: Goal;
-  allergies: Array<Allergen>;
-  activity: Activity;
+import {Diet} from './diet';
+import {Allergen} from './allergen';
+
+export class Profile {
+  constructor(
+    public id: number | null,
+    public name: string,
+    public age: number,
+    public gender: Gender,
+    public weight: number,
+    public height: number,
+    public diet: Diet,
+    public goal: Goal,
+    public allergies: Array<Allergen>,
+    public activity: Activity
+  ) {}
 }
 
-enum Gender {
-  MALE,
-  FEMALE
+export enum Gender {
+  MALE = "MALE",
+  FEMALE = "FEMALE",
 }
 
-enum Goal {
-  WEIGHT_GAIN,
-  WEIGHT_LOSS,
-  WEIGHT_MAINTAINANCE
+export enum Goal {
+  WEIGHT_GAIN = "WEIGHT_GAIN",
+  WEIGHT_LOSS = "WEIGHT_LOSS",
+  WEIGHT_MAINTAINANCE = "WEIGHT_MAINTAINANCE",
 }
 
-enum Activity {
-  SEDENTARY,
-  RATHER_ACTIVE,
-  ACTIVE,
-  VERY_ACTIVE,
+export enum Activity {
+  SEDENTARY = "SEDENTARY",
+  RATHER_ACTIVE = "RATHER_ACTIVE",
+  ACTIVE = "ACTIVE",
+  VERY_ACTIVE = "VERY_ACTIVE",
 }

@@ -1,1 +1,40 @@
-<p>homepage works!</p>
+<div *ngIf="AuthService.check(); else welcomeScreen" class="d-flex justify-content-between">
+  <nav class="border border-dark border-top-0 border-bottom-0 border-start-0 px-4 min-vh-100 flex-grow-0 d-flex flex-column profiles">
+    <label
+      *ngFor="let profile of profiles"
+        for="{{profile.id}}"
+      class="btn fs-5 fw-bold"
+      [ngClass]="{'btn-outline-secondary': selectedProfile?.id !== profile.id, 'btn-secondary': selectedProfile?.id === profile.id}"
+      (click)="selectProfile(profile.id!)">
+      <input type="radio" id="{{profile.id}}" hidden>{{ profile.name }}<br><span class="fs-6 fw-normal">Objectif : @switch (profile.goal) {
+        @case (Goal.WEIGHT_LOSS) {
+          Perdre du poids
+        }
+        @case (Goal.WEIGHT_GAIN) {
+          Prendre du poids
+        }
+        @case (Goal.WEIGHT_MAINTAINANCE) {
+          Maintenir son poids
+        }
+    }</span>
+    </label>
+  </nav>
+  <form *ngIf="!showRecipes; else showRecipeList" #mealGenerationForm="ngForm" (ngSubmit)="generateMeals(mealGenerationForm)" class="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+    <label for="number-meals" class="form-label">Nombre de repas à générer</label>
+    <input type="number" class="form-control w-50 mb-2" name="numberMeals" id="number-meals" ngModel max="10">
+    <button type="submit" class="btn btn-primary">Générer</button>
+  </form>
+</div>
+
+<ng-template #showRecipeList>
+  <app-recipes-show [profileId]="selectedProfile!.id!" [mealsCount]="numberMeals"></app-recipes-show>
+</ng-template>
+
+<ng-template #welcomeScreen>
+    <section class="d-flex flex-column justify-content-center align-items-center mh-100 text-center">
+      <h1>Fit&Feed</h1>
+      <br>
+      <p class="font-weight-bold">Le site qui génère des recettes pour les sportifs et ceux qui aiment prendre soin de leur corps</p>
+      <p>Pour commencer, <a href="/login" class="btn btn-outline-primary">connectez-vous</a> ou <a href="/login" class="btn btn-primary">créez-vous un compte</a></p>
+    </section>
+</ng-template>

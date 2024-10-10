@@ -5,7 +5,7 @@ import {User} from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  public static setCurrent(user:User) {
+  public static setCurrent(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
