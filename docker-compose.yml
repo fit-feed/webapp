@@ -1,0 +1,14 @@
+name: fit-feed
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    container_name: fit-feed-web
+    restart: always
+    env_file:
+      - .env

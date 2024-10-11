@@ -1,6 +1,17 @@
 <div *ngIf="isLoading; else showRecipes" class="loading-circle"></div>
 <ng-template #showRecipes>
-  <div *ngFor="let recipe of recipes">
-    <p>{{ recipe.name }}</p>
+  <div class="d-flex justify-content-between">
+    <div class="d-flex flex-wrap justify-content-center" [ngClass]="{'scrollable-container': selectedRecipe}">
+      <label
+        *ngFor="let recipe of recipes" for="{{ recipe.id }}"
+        class="btn h-25 m-2 d-flex flex-column justify-content-center align-items-center"
+        [ngClass]="{'btn-outline-success': selectedRecipe?.id !== recipe.id, 'btn-success': selectedRecipe?.id === recipe.id}"
+        (click)="selectRecipe(recipe.id!)">
+        <input type="radio" hidden name="selectRecipe" id="{{ recipe.id }}">
+        <p>{{ recipe.name }}</p>
+        <p>Temps de préparation : {{ recipe.preparationTime > 60 ? (recipe.preparationTime / 60) + ' h ' + (recipe.preparationTime % 60) + ' min' : recipe.preparationTime + ' min' }}</p>
+      </label>
+    </div>
+    <app-recipe-page *ngIf="selectedRecipe" [recipe]="selectedRecipe" class="flex-grow-1 scrollable-container"></app-recipe-page>
   </div>
 </ng-template>

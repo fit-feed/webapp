@@ -9,13 +9,13 @@ export class Ingredient {
     public allergen: Allergen | null
   ) {}
 
-  public static fromJson(json: Map<string, any>): Ingredient {
+  public static fromJson(json: any): Ingredient {
     return new Ingredient(
-      json.get('id'),
-      json.get('name'),
-      json.get('quantity'),
-      json.get('quantityType'),
-      json.get('allergen')
+      json.id,
+      json.name,
+      json.quantity,
+      json.quantityType,
+      json.allergen
     );
   }
 }

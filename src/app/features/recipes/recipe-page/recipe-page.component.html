@@ -1,0 +1,18 @@
+<h2>{{ recipe.name }}</h2>
+<p><strong>Temps de préparation</strong> : {{ recipe.preparationTime > 60 ? (recipe.preparationTime / 60) + ' h ' + (recipe.preparationTime % 60) + ' min' : recipe.preparationTime + 'min' }}</p>
+<h4>Ingrédients : </h4>
+<ul>
+  <li *ngFor="let ingredient of recipe.ingredients">
+    {{ ingredient.quantity }} {{ ingredient.quantityType }} de {{ ingredient.name }}
+  </li>
+</ul>
+<br>
+<h4>Préparation : </h4>
+<ul>
+  <li *ngFor="let step of recipe.steps">
+    {{ step.title }} : {{ step.text }}
+  </li>
+</ul>
+
+<p>Allergènes : {{ getAllergens(recipe.ingredients) }}</p>
+<hr>

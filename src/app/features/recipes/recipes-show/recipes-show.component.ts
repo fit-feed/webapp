@@ -1,14 +1,21 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Recipe} from '../models/recipe';
 import {RecipeService} from '../recipe.service';
-import {NgForOf, NgIf} from '@angular/common';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Profile} from '../../../shared/models/profile';
+import {RecipePageComponent} from '../recipe-page/recipe-page.component';
 
 @Component({
   selector: 'app-recipes-show',
   standalone: true,
   imports: [
     NgIf,
-    NgForOf
+    NgForOf,
+    FormsModule,
+    ReactiveFormsModule,
+    NgClass,
+    RecipePageComponent
   ],
   templateUrl: './recipes-show.component.html',
   styleUrl: './recipes-show.component.css'
@@ -16,6 +23,8 @@ import {NgForOf, NgIf} from '@angular/common';
 export class RecipesShowComponent implements OnInit {
   constructor(private recipeService: RecipeService) {}
   recipes: Array<Recipe> = [];
+  selectedRecipe?: Recipe;
+
   isLoading = false;
   @Input() mealsCount!: any;
   @Input() profileId!: number;
@@ -33,5 +42,9 @@ export class RecipesShowComponent implements OnInit {
           this.isLoading = false;
         }
       });
+  }
+
+  selectRecipe(recipeId: number): void {
+    this.selectedRecipe = this.recipes.find(recipe => recipe.id === recipeId);
   }
 }

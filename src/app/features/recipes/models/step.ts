@@ -1,15 +1,15 @@
 export class Step {
   constructor(
-    id: number | null,
-    title: string,
-    text: string,
+    public id: number | null,
+    public title: string,
+    public text: string,
   ) {}
 
-  public static fromJson(json: Map<string, any>): Step {
+  public static fromJson(json: any): Step {
     return new Step(
-      json.get('id'),
-      json.get('title'),
-      json.get('text')
+      json.id,
+      json.title,
+      json.text
     );
   }
 }
